@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login into the web-site | name</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-      <div class="container-fluid bg-light text-center py-2">
-        <a class="navbar-brand text-center text-lg fs-1" href="/">NAME</a>
-      </div>
     <section class="bg-light py-3 py-md-5">
         <div class="container">
           <div class="row justify-content-center">
@@ -27,13 +24,13 @@
                     <div class="row gy-2 overflow-hidden">
                       <div class="col-12">
                         <div class="form-floating mb-3">
-                          <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                          <input type="email" class="form-control" name="email" id="login_email" placeholder="name@example.com" required>
                           <label for="email" class="form-label">Email</label>
                         </div>
                       </div>
                       <div class="col-12">
                         <div class="form-floating mb-3">
-                          <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
+                          <input type="password" class="form-control" name="password" id="login_password" value="" placeholder="Password" required>
                           <label for="password" class="form-label">Password</label>
                         </div>
                       </div>
@@ -53,6 +50,21 @@
                           <button class="btn btn-primary btn-lg" type="submit">Log in</button>
                         </div>
                       </div>
+                      <div class="error" id="login1">
+                        <h1 class="error-txt" >Error: password is common (banned)</h1>
+                      </div>
+                      <div class="error" id="login2">
+                        <h1 class="error-txt" >Error: e-mail has no '@' symbol</h1>
+                      </div>
+                      <div class="error" id="login4">
+                        <h1 class="error-txt" >Error: password have to be more than 7 symbols</h1>
+                      </div>
+                      <div class="error" id="login5">
+                        <h1 class="error-txt" >Error: password have to be less than 100 symbols</h1>
+                      </div>
+                      <div class="warn" id="login3">
+                        <h1 class="warn-txt" >Warning: email is not in our list</h1>
+                      </div>
                       <div class="col-12">
                         <p class="m-0 text-secondary text-center">Don't have an account? <a href="register.html" class="link-primary text-decoration-none">Sign up</a></p>
                       </div>
@@ -65,6 +77,7 @@
         </div>
       </section>
       
+      <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
