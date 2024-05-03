@@ -1,9 +1,16 @@
-let password = document.getElementById("login_password");
-let email = document.getElementById("login_email");
+const password = document.getElementById("login_password");
+const email = document.getElementById("login_email");
+let myerror = 0;
 
-let login1 = document.getElementById('login1'),
-login2 = document.getElementById('login2'),
-login3 = document.getElementById('login3');
+const login1 = document.getElementById('login1');
+const login2 = document.getElementById('login2');
+const login3 = document.getElementById('login3');
+
+const buttonWorking = document.getElementById('btnworking');
+const buttonNotWorking = document.getElementById('btnnotworking');
+
+console.log(buttonNotWorking, buttonWorking);
+
 const emailDomains = [
     'gmail.com',
     'yahoo.com',
@@ -17,7 +24,8 @@ const emailDomains = [
     'gmx.com',
     'yandex.com',
     'fastmail.com'
-  ];
+];
+
 const commonPasswords = [
     "123456", "password", "123456789", "12345678", "12345", 
     "1234567", "1234567890", "123123", "password1", "abc123", 
@@ -41,43 +49,60 @@ const commonPasswords = [
     "12345678901", "12345678902", "12345678903", "12345678904", "12345678905", 
     "12345678906", "12345678907", "12345678908", "12345678909", "123456789010", 
 ];
+
 if (password) {
     password.addEventListener("input", function() {
+        myerror = 0;
         if (password.value.trim() !== "") {
             if (commonPasswords.includes(password.value.trim())) {
                 login1.style.display = 'flex';
-            }
-            else {
+                myerror++;
+            } else {
                 login1.style.display = 'none';
             }
-            if (password.value.trim().length<8) {
+            if (password.value.trim().length < 8) {
                 login4.style.display = 'flex';
+                myerror++;
             } else {
                 login4.style.display = 'none';
             }
-            if (password.value.trim().length>100) {
+            if (password.value.trim().length > 100) {
                 login5.style.display = 'flex';
+                myerror++;
             } else {
                 login5.style.display = 'none';
             }
         }
+        toggleButtonVisibility();
     });
 }
 
 if (email) {
     email.addEventListener("input", function() {
+        myerror = 0;
         if (email.value.trim() !== "") {
-            if (!Array.from(email.value.trim()).includes('@')) {
+            if (!email.value.includes('@')) {
                 login2.style.display = 'flex';
+                myerror++;
             } else {
                 login2.style.display = 'none';
             }
-            if (emailDomains.includes(email.value.slice(1+email.value.indexOf('@')))) {
-                login3.style.display = 'none';
-            } 
-            else {
+            if (!emailDomains.includes(email.value.slice(1 + email.value.indexOf('@')))) {
                 login3.style.display = 'flex';
+            } else {
+                login3.style.display = 'none';
             }
         }
+        toggleButtonVisibility();
     });
+}
+
+function toggleButtonVisibility() {
+    if (myerror === 0 && password.value.trim() !== "" && email.value.trim() !== "") {
+        buttonNotWorking.style.display = 'none';
+        buttonWorking.style.display = 'block';
+    } else {
+        buttonNotWorking.style.display = 'block';
+        buttonWorking.style.display = 'none';
+    }
 }
