@@ -1,15 +1,13 @@
-const password = document.getElementById("login_password");
-const email = document.getElementById("login_email");
+const password = document.getElementById("login_password"),
+email = document.getElementById("login_email"),
+
+login1 = document.getElementById('login1'),
+login2 = document.getElementById('login2'),
+login3 = document.getElementById('login3'),
+
+buttonWorking = document.getElementById('btnworking'),
+buttonNotWorking = document.getElementById('btnnotworking');
 let myerror = 0;
-
-const login1 = document.getElementById('login1');
-const login2 = document.getElementById('login2');
-const login3 = document.getElementById('login3');
-
-const buttonWorking = document.getElementById('btnworking');
-const buttonNotWorking = document.getElementById('btnnotworking');
-
-console.log(buttonNotWorking, buttonWorking);
 
 const emailDomains = [
     'gmail.com',
@@ -50,55 +48,28 @@ const commonPasswords = [
     "12345678906", "12345678907", "12345678908", "12345678909", "123456789010", 
 ];
 
-if (password) {
-    password.addEventListener("input", function() {
-        myerror = 0;
-        if (password.value.trim() !== "") {
-            if (commonPasswords.includes(password.value.trim())) {
-                login1.style.display = 'flex';
-                myerror++;
-            } else {
-                login1.style.display = 'none';
-            }
-            if (password.value.trim().length < 8) {
-                login4.style.display = 'flex';
-                myerror++;
-            } else {
-                login4.style.display = 'none';
-            }
-            if (password.value.trim().length > 100) {
-                login5.style.display = 'flex';
-                myerror++;
-            } else {
-                login5.style.display = 'none';
-            }
-        }
-        toggleButtonVisibility();
-    });
+function validatePassword() {
+    const value = password.value.trim();
+    if (value === "") return;
+
+    login1.style.display = commonPasswords.includes(value) ? 'flex' : 'none';
+    login4.style.display = value.length < 8 ? 'flex' : 'none';
+    login5.style.display = value.length > 100 ? 'flex' : 'none';
 }
 
-if (email) {
-    email.addEventListener("input", function() {
-        myerror = 0;
-        if (email.value.trim() !== "") {
-            if (!email.value.includes('@')) {
-                login2.style.display = 'flex';
-                myerror++;
-            } else {
-                login2.style.display = 'none';
-            }
-            if (!emailDomains.includes(email.value.slice(1 + email.value.indexOf('@')))) {
-                login3.style.display = 'flex';
-            } else {
-                login3.style.display = 'none';
-            }
-        }
-        toggleButtonVisibility();
-    });
+function validateEmail() {
+    const value = email.value.trim();
+    if (value === "") return;
+
+    login2.style.display = !value.includes('@') ? 'flex' : 'none';
+    login3.style.display = !emailDomains.includes(value.slice(1 + value.indexOf('@'))) ? 'flex' : 'none';
 }
 
 function toggleButtonVisibility() {
-    if (myerror === 0 && password.value.trim() !== "" && email.value.trim() !== "") {
+    const passwordValue = password.value.trim();
+    const emailValue = email.value.trim();
+
+    if (myerror === 0 && passwordValue !== "" && emailValue !== "") {
         buttonNotWorking.style.display = 'none';
         buttonWorking.style.display = 'block';
     } else {
@@ -106,3 +77,15 @@ function toggleButtonVisibility() {
         buttonWorking.style.display = 'none';
     }
 }
+
+password.addEventListener("input", () => {
+    myerror = 0;
+    validatePassword();
+    toggleButtonVisibility();
+});
+
+email.addEventListener("input", () => {
+    myerror = 0;
+    validateEmail();
+    toggleButtonVisibility();
+});
