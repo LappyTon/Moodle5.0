@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.courses {
+    padding: 0 30px;
+}
+
+.cs {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    background-color: orange;
+    border-radius: 10px;
+    justify-content: start;
+}
+.cs-icon {
+    margin-right: 20px;
+    height: 40px;
+}
+.cs-name {
+    display: flex;
+    justify-content: center;
+    max-width: 20vw;
+    background-color: #ffc65c;
+    border-radius: 10px;
+    padding: 5px 4vw;
+    align-items: center;
+}
+.cs-nametxt {
+    color: white; 
+    font-family: "Rubik", sans-serif;
+    font-size: 25px;
+    margin: 0;
+}
+.cs-typetxt {
+    margin: 0;
+    color: rgb(252, 252, 252);
+}
+.cs-main {
+    display: flex; align-items: center;
+}
+.cs-task {
+    max-width: 60vw;
+}
+
+.cs-task-txt {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+
+
