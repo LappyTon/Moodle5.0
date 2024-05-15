@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const userCells = document.querySelectorAll('.m_user-cell');
+    const userCells = document.querySelectorAll('.sm-subject_cell');
     const mmactive = document.querySelectorAll('.mm-activity_btn')
     userCells.forEach(function(cell) {
         cell.addEventListener('click', function() {
