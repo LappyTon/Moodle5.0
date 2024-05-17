@@ -37,6 +37,7 @@ body {
 .cs-main {
     display: flex; align-items: center;
     justify-content: end;
+    padding: 0 30px;
 }
 .cs-task {
 }
@@ -52,6 +53,13 @@ body {
     background-color: rgba(0, 0, 0, 0); 
     color: none;
     border: 0;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+.cs-settingsbtn:hover {
+    transition: 1000ms;
+    background-color: #ff9100;
 }
 .cs-settingsbtn-img {
     width: 30px;
@@ -77,4 +85,23 @@ body {
 .cs-settings_element:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+.cs-settings_element.delete {
+    color: red;
+}
+.cs-plus {
+
+}
+.cs-plusbtn {
+    background-color: rgba(0, 0, 0, 0); 
+    color: none;
+    border: 0;
+    padding: 5px;
+}
+.cs-plusbtn-img {    width: 30px;
+    height: 30px;
+}
+.cs-plusbtn:hover {
+    transition: 1000ms;
+    background-color: #ff9100;
 }

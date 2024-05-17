@@ -1,3 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+body {
+    background-color: #fff0e3;
+}
+.my_courses {}
+.mc-txtwrapper {
+    padding: 20px 40px;
+    background-color: #ffb62e;
+    border-radius: 10px;
+    display: flex;
+    width: fit-content;
+}
+.mc-txt {
+    margin: 0;
+    font-weight: 800;
+    font-size: 30px;
+    color: white; 
+    font-family: "Rubik", sans-serif;
+}
+
+
+.courses {
+    padding: 0 30px;
+}
+
+.cs {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: orange;
+    border-radius: 10px;
+    
+}
+.cs-name {
+    display: flex;
+    justify-content: center;
+    max-width: 20vw;
+    background-color: #ffc65c;
+    border-radius: 10px;
+    padding: 5px 40px;
+    align-items: center;
+}
+.cs-nametxt {
+    color: white; 
+    font-family: "Rubik", sans-serif;
+    font-size: 25px;
+    margin: 0;
+}
+.cs-typetxt {
+    margin: 0;
+    color: rgb(252, 252, 252);
+}
+.cs-main {
+    display: flex; align-items: center;
+    justify-content: end;
+    padding: 0 30px;
+}
+.cs-task {
+}
+
+.cs-task-txt {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.cs-options {}
+.cs-settingsbtn {
+    background-color: rgba(0, 0, 0, 0); 
+    color: none;
+    border: 0;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+.cs-settingsbtn:hover {
+    transition: 300ms;
+    background-color: #ff9100;
+}
+.cs-settingsbtn-img {
+    width: 30px;
+    height: 30px;
+}
+.cs-settings_wrapper {
+    position: absolute;
+    /* display: none; */
+    display: none;
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 8px;
+    flex-direction: column;
+}
+.cs-settings_element {
+    border: 0;
+}
+.cs-settings_element:hover {
+    transition: 200ms;
+    background-color: #cecece;
+}
+.cs-settings_element:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.cs-settings_element:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.cs-settings_element.delete {
+    color: red;
+}
+.cs-plus {
+
+}
+.cs-plusbtn {
+    background-color: rgba(0, 0, 0, 0); 
+    color: none;
+    border: 0;
+    padding: 5px;
+}
+.cs-plusbtn-img {    width: 30px;
+    height: 30px;
+}
+.cs-plusbtn:hover {
+    transition: 1000ms;
+    background-color: #ff9100;
+}
+.cs-bigplus {
+    margin: 30px auto;
+    background-color: rgb(255, 212, 156);
+    border-radius: 10px;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+a {
+    text-decoration: none; 
+}
+.cs-bigplustxt {
+    margin: 0;
+    color: rgb(255, 250, 241);
+}
 .studentsMark {
     display: flex;
     flex-direction: row;
@@ -209,4 +352,27 @@
 .mm-marks_btn:hover {
     transition: 1000ms;
     background-color: #0084ff;
+}
+.last-marks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.lm-txtwrapper {
+    padding: 20px 40px;
+    background-color: #ffb62e;
+    border-radius: 10px;
+    display: flex;
+    width: fit-content;
+}
+.lm-txt {
+    margin: 0;
+    font-weight: 800;
+    font-size: 30px;
+    color: white; 
+    font-family: "Rubik", sans-serif;
+}
+.lm-mwrapper {
+    display: flex;
+    margin-top: 20px;
 }
