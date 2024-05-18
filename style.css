@@ -34,3 +34,8 @@
 .btnnotworking:hover {
     background-color: #888888;
 }
+.left-nav .nav-link:hover{
+    border-radius: 15px;
+    background-color: #fa8484;
+    transition: 0.3s;
+}
