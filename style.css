@@ -78,3 +78,20 @@
 .grade-list li.green {
     color: darkgreen;
 }
+
+.cs{
+    color:#0d6efd !important;
+    font-family: Montserrat;
+}
+
+.cs:hover{
+    color:brown !important;
+    text-decoration: underline;
+    transition-duration: 0.2s !important;
+}
+
+a.profile:hover{
+    color:brown;
+    font-weight:600;
+    transition-duration: 0.2s;
+}
