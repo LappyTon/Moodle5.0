@@ -90,8 +90,21 @@
     transition-duration: 0.2s !important;
 }
 
+a.profile{
+    color:gray;
+}
+
 a.profile:hover{
-    color:brown;
-    font-weight:600;
+    color:#4e5154;
     transition-duration: 0.2s;
+}
+
+.course{
+    text-decoration: none;
+}
+
+.course:hover{
+    color:#4e5154;
+    transition-duration: 0.5s;
+    font-size: larger;
 }
