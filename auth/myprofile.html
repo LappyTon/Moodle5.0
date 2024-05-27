@@ -13,37 +13,45 @@
                 <div class="text-center my-4">
                     <img src="../assets/menu/profile.svg" class="img-fluid rounded-circle mb-3" alt="Profile Photo" width="100">
                     <h4 id="userDisplayName">Ім'я Користувача</h4>
-                    
                 </div>
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active mb-2" href="#">
+                    <a class="nav-link active mb-2" id="grades-tab" data-bs-toggle="pill" href="#grades" role="tab" aria-controls="grades" aria-selected="true">
                         <span>Оцінки</span>
                     </a>
-                    <a class="nav-link mb-2" href="../courses/anotherPage.html">
+                    <a class="nav-link mb-2" id="subjects-tab" data-bs-toggle="pill" href="#subjects" role="tab" aria-controls="subjects" aria-selected="false">
                         <span>Мої Предмети</span>
                     </a>
                 </div>
             </div>
             <div class="col-9">
-                <!-- Таблиця для відображення оцінок -->
-                <div id="progress-container">
-                    <h4 class="mb-4">Оцінки</h4>
-                    <div class="mb-3">
-                        <label for="date-slider" class="form-label">Виберіть дату:</label>
-                        <input type="range" class="form-range" id="date-slider" min="0" max="0">
-                        <p id="selected-date" class="text-center"></p>
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="grades" role="tabpanel" aria-labelledby="grades-tab">
+                        <div id="progress-container">
+                            <h4 class="mb-4">Оцінки</h4>
+                            <div class="mb-3">
+                                <label for="date-slider" class="form-label">Виберіть дату:</label>
+                                <input type="range" class="form-range" id="date-slider" min="0" max="0">
+                                <p id="selected-date" class="text-center"></p>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Предмет</th>
+                                        <th scope="col">Оцінки</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ratings-table-body">
+                                    <!-- Дані будуть додаватися тут -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Предмет</th>
-                                <th scope="col">Оцінки</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ratings-table-body">
-                            <!-- Дані будуть додаватися тут -->
-                        </tbody>
-                    </table>
+                    <div class="tab-pane fade" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
+                        <h4 class="mb-4">Мої Предмети</h4>
+                        <div class="list-group" id="subjects-list">
+                            <!-- Предмети будуть додаватися тут -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

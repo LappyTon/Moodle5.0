@@ -4,30 +4,56 @@ document.addEventListener('DOMContentLoaded', function () {
         keyboard: false
     });
 
-    usernameModal.show();
+    var storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+        document.getElementById('userDisplayName').textContent = storedUsername;
+        fetchPersonalCabinetData(storedUsername);
+    } else {
+        usernameModal.show();
+    }
 
-    document.getElementById('submit-username').addEventListener('click', async function () {
+    document.getElementById('submit-username').addEventListener('click', function () {
         const username = document.getElementById('username').value;
         if (username) {
-            const response = await fetch('http://localhost:5000/auth/personalCabinet', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                populateProgress(data.progress);
-                usernameModal.hide();
-            } else {
-                alert('Помилка при отриманні прогресу.');
-            }
+            localStorage.setItem('username', username);
+            document.getElementById('userDisplayName').textContent = username;
+            fetchPersonalCabinetData(username);
+            usernameModal.hide();
         } else {
             alert('Будь ласка, введіть ім\'я користувача.');
         }
     });
+
+    function fetchPersonalCabinetData(username) {
+        fetchGrades(username);
+        fetchSubjects(username);
+    }
+
+    function fetchGrades(username) {
+        fetch('http://localhost:5000/auth/personalCabinet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username })
+        })
+        .then(response => response.ok ? response.json() : Promise.reject('Помилка при отриманні прогресу.'))
+        .then(data => populateProgress(data.progress))
+        .catch(error => alert(error));
+    }
+
+    function fetchSubjects(username) {
+        fetch('http://localhost:5000/listSTUDENT', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username })
+        })
+        .then(response => response.ok ? response.json() : Promise.reject('Помилка при отриманні предметів.'))
+        .then(data => populateSubjects(data))
+        .catch(error => alert(error));
+    }
 
     function populateProgress(progress) {
         const dateSlider = document.getElementById('date-slider');
@@ -57,5 +83,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Ініціалізуємо початкові значення
         dateSlider.value = 0;
         dateSlider.dispatchEvent(new Event('input'));
+    }
+
+    function populateSubjects(data) {
+        const subjectsList = document.getElementById('subjects-list');
+        subjectsList.innerHTML = '';
+
+        data.forEach(student => {
+            const listItem = document.createElement('a');
+            listItem.classList.add('list-group-item', 'list-group-item-action');
+            listItem.innerHTML = `<h5>${student.username}</h5>${student.subjects.map((subject, index) => `${index + 1}) ${subject}`).join('<br>')}`;
+            subjectsList.appendChild(listItem);
+        });
     }
 });
