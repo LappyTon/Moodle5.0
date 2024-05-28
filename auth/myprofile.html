@@ -14,7 +14,7 @@
                     <img src="../assets/menu/profile.svg" class="img-fluid rounded-circle mb-3" alt="Profile Photo" width="100">
                     <h4 id="userDisplayName">Ім'я Користувача</h4>
                 </div>
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <div id="nav-links" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active mb-2" id="grades-tab" data-bs-toggle="pill" href="#grades" role="tab" aria-controls="grades" aria-selected="true">
                         <span>Оцінки</span>
                     </a>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
+                <div id="content-container" class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="grades" role="tabpanel" aria-labelledby="grades-tab">
                         <div id="progress-container">
                             <h4 class="mb-4">Оцінки</h4>
@@ -52,6 +52,9 @@
                             <!-- Предмети будуть додаватися тут -->
                         </div>
                     </div>
+                </div>
+                <div id="teacher-message" class="d-none">
+                    <h4 class="mb-4">Ви вчитель, ваше ім'я <span id="teacherName"></span>, і для вас на цій сторінці нічого немає.</h4>
                 </div>
             </div>
         </div>

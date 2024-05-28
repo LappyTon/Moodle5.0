@@ -5,9 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     var storedUsername = localStorage.getItem('username');
+    var storedRoles = JSON.parse(localStorage.getItem('roles')) || [];
+
     if (storedUsername) {
         document.getElementById('userDisplayName').textContent = storedUsername;
-        fetchPersonalCabinetData(storedUsername);
+        displayContentForRole(storedRoles);
+        if (!storedRoles.includes('TEACHER') && !storedRoles.includes('CHIEF-TEACHER')) {
+            fetchPersonalCabinetData(storedUsername);
+        }
     } else {
         usernameModal.show();
     }
@@ -17,12 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
         if (username) {
             localStorage.setItem('username', username);
             document.getElementById('userDisplayName').textContent = username;
-            fetchPersonalCabinetData(username);
+            displayContentForRole(storedRoles);
+            if (!storedRoles.includes('TEACHER') && !storedRoles.includes('CHIEF-TEACHER')) {
+                fetchPersonalCabinetData(username);
+            }
             usernameModal.hide();
         } else {
             alert('Будь ласка, введіть ім\'я користувача.');
         }
     });
+
+    function displayContentForRole(roles) {
+        const contentContainer = document.getElementById('content-container');
+        const teacherMessage = document.getElementById('teacher-message');
+        const teacherNameSpan = document.getElementById('teacherName');
+        const userDisplayName = localStorage.getItem('username');
+
+        if (roles.includes('TEACHER') || roles.includes('CHIEF-TEACHER')) {
+            contentContainer.style.display = 'none';
+            teacherMessage.classList.remove('d-none');
+            teacherNameSpan.textContent = userDisplayName;
+        } else {
+            contentContainer.style.display = 'block';
+            teacherMessage.classList.add('d-none');
+        }
+    }
 
     function fetchPersonalCabinetData(username) {
         fetchGrades(username);
