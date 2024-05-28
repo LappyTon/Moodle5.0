@@ -1,74 +1,70 @@
-// const password = document.getElementById("login_password"),
-// email = document.getElementById("login_email"),
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-// login1 = document.getElementById('login1'),
-// login2 = document.getElementById('login2'),
-// login3 = document.getElementById('login3'),
-// login4 = document.getElementById('login4'),
-// login5 = document.getElementById('login5'),
-// login6 = document.getElementById('login6'),
+    try {
+        const response = await axios.post('http://localhost:5000/auth/login', { username, password });
+        const { token, roles } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('roles', roles);
+        displayDashboard(roles);
+    } catch (error) {
+        alert('Login failed: ' + error.response.data.message);
+    }
+});
 
-// buttonWorking = document.getElementById('btnworking'),
-// buttonNotWorking = document.getElementById('btnnotworking');
-// let myerror = 0;
+function displayDashboard(roles) {
+    document.getElementById('loginForm').classList.add('d-none');
+    if (roles.includes('TEACHER')) {
+        document.getElementById('teacherDashboard').classList.remove('d-none');
+    } else if (roles.includes('STUDENT')) {
+        document.getElementById('studentDashboard').classList.remove('d-none');
+    }
+}
 
-// const emailDomains = [
-//     'gmail.com',
-//     'yahoo.com',
-//     'outlook.com',
-//     'hotmail.com',
-//     'aol.com',
-//     'icloud.com',
-//     'protonmail.com',
-//     'mail.com',
-//     'zoho.com',
-//     'gmx.com',
-//     'yandex.com',
-//     'fastmail.com'
-// ];
-// const regex = /^[a-zA-Z0-9_\-.,]+$/;
+document.addEventListener('DOMContentLoaded', function () {
+    const roles = localStorage.getItem('roles');
+    if (roles) {
+        displayDashboard(roles);
+    }
+});
 
+document.getElementById('addSubjectRating').addEventListener('click', function () {
+    const subjectRatingDiv = document.createElement('div');
+    subjectRatingDiv.classList.add('form-group', 'subject-rating');
+    subjectRatingDiv.innerHTML = `
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control subject" required>
+        <label for="rating">Rating</label>
+        <input type="number" class="form-control rating" required>
+    `;
+    document.getElementById('subjectRatings').appendChild(subjectRatingDiv);
+});
 
+document.getElementById('addRatingForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const studentName = document.getElementById('studentName').value;
+    const date = document.getElementById('date').value;
+    const subjectRatingDivs = document.querySelectorAll('.subject-rating');
 
-// function validatePassword() {
-//     const value = password.value;
-//     if (value === "") return;
-    
-//     login1.style.display = value.indexOf(' ')>=0 ? 'flex' : 'none';
-//     login6.style.display = regex.test(value) ? 'none' : 'flex';
-//     login4.style.display = value.length < 8 ? 'flex' : 'none';
-//     login5.style.display = value.length > 100 ? 'flex' : 'none';
-// }
+    const ratings = Array.from(subjectRatingDivs).map(div => ({
+        subject: div.querySelector('.subject').value,
+        ratings: div.querySelector('.rating').value
+    }));
 
-// function validateEmail() {
-//     const value = email.value.trim();
-//     if (value === "") return;
+    try {
+        await axios.post('http://localhost:5000/addRating', { studentName, date, ratings });
+        alert('Ratings added successfully');
+    } catch (error) {
+        alert('Failed to add ratings: ' + error.response.data.message);
+    }
+});
 
-//     login2.style.display = !value.includes('@') ? 'flex' : 'none';
-//     login3.style.display = !emailDomains.includes(value.slice(1 + value.indexOf('@'))) ? 'flex' : 'none';
-// }
+document.getElementById('teacherDashboardLink').addEventListener('click', function () {
+    displayDashboard(['TEACHER']);
+});
 
-// function toggleButtonVisibility() {
-//     const passwordValue = password.value.trim();
-//     const emailValue = email.value.trim();
-
-//     if (myerror === 0 && passwordValue !== "" && emailValue !== "") {
-//         buttonNotWorking.style.display = 'none';
-//         buttonWorking.style.display = 'block';
-//     } else {
-//         buttonNotWorking.style.display = 'block';
-//         buttonWorking.style.display = 'none';
-//     }
-// }
-
-// password.addEventListener("input", () => {
-//     myerror = 0;
-//     validatePassword();
-//     toggleButtonVisibility();
-// });
-
-// email.addEventListener("input", () => {
-//     myerror = 0;
-//     validateEmail();
-//     toggleButtonVisibility();
-// });
+document.getElementById('studentDashboardLink').addEventListener('click', function () {
+    displayDashboard(['STUDENT']);
+});

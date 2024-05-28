@@ -7,7 +7,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     const className = document.getElementById('className').value;
 
     try {
-        const response = await fetch('https://server-for-moodle5-0.onrender.com/auth/registration', {
+        const response = await fetch('http://localhost:5000/auth/registration', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
