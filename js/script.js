@@ -192,3 +192,4 @@ document.getElementById('removeScheduleForm').addEventListener('submit', async f
         alert('Не вдалося видалити розклад: ' + error.response.data.message);
     }
 });
+
