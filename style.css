@@ -108,3 +108,9 @@ a.profile:hover{
     transition-duration: 0.5s;
     font-size: larger;
 }
+.container {
+    margin-top: 50px;
+}
+.navbar {
+    margin-bottom: 20px;
+}
