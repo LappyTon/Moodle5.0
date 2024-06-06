@@ -35,21 +35,64 @@
         </div>
     </nav>
     <div class="container">
-        <div id="loginForm" class="card">
-            <div class="card-body">
-                <h5 class="card-title">Вхід</h5>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Ім'я користувача</label>
-                        <input type="text" class="form-control" id="username" required>
+        <div id="authForms" class="card">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Вхід</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Реєстрація</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <div id="loginForm" class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Вхід</h5>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">Ім'я користувача</label>
+                                <input type="text" class="form-control" id="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Увійти</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" class="form-control" id="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Увійти</button>
-                </form>
+                </div>
             </div>
+            <div class="tab-pane fade show" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <div id="registrationForm" class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Реєстрація</h5>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">Ім'я користувача</label>
+                                <input type="text" class="form-control" id="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label for="role" class="form-label">Роль</label>
+                                <select class="form-control" name="role" id="role" required>
+                                    <option value="STUDENT">СТУДЕНТ</option>
+                                    <option value="TEACHER">ВИКЛАДАЧ</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label for="className" class="form-label">Клас</label>
+                                <input type="text" class="form-control" name="className" id="className" placeholder="Class" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Увійти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
 
         <div id="teacherDashboard" class="d-none">
@@ -192,5 +235,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/register.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>

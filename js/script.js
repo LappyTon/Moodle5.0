@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
 // Функція для відображення відповідного дашборду на основі ролей користувача
 function displayDashboard(roles) {
-    document.getElementById('loginForm').classList.add('d-none');
+    document.getElementById('authForms').classList.add('d-none');
     document.getElementById('teacherDashboard').classList.add('d-none');
     document.getElementById('studentDashboard').classList.add('d-none');
     document.getElementById('adminDashboard').classList.add('d-none');
